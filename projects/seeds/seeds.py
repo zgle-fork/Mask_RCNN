@@ -65,16 +65,18 @@ class BalloonConfig(Config):
     # Adjust down if you use a smaller GPU.
 
     # zz
+    IMAGES_PER_GPU = 4
     # IMAGES_PER_GPU = 2
-    IMAGES_PER_GPU = 1 # https://github.com/matterport/Mask_RCNN/issues/44
+    # IMAGES_PER_GPU = 1 # https://github.com/matterport/Mask_RCNN/issues/44
 
-    # zz : Use small images for faster training. Set the limits of the small side
-    # the large side, and that determines the image shape.
-    IMAGE_MIN_DIM = 64
-    IMAGE_MAX_DIM = 64
+    # # zz : Use small images for faster training. Set the limits of the small side
+    # # the large side, and that determines the image shape.
+    # IMAGE_MIN_DIM = 64
+    # IMAGE_MAX_DIM = 64
     # Backbone network architecture
     # Supported values are: resnet50, resnet101
-    BACKBONE = "resnet50"
+    BACKBONE = "resnet101"
+    # BACKBONE = "resnet50"
 
     # Number of classes (including background)
     NUM_CLASSES = 1 + 1  # Background + balloon
@@ -100,7 +102,7 @@ class BalloonDataset(utils.Dataset):
         """
         # Add classes. We have only one class to add.\
         #zz
-        self.add_class("balloon", 1, "cls_balloon")
+        self.add_class("balloon", 1, "seed")
 
         # Train or validation dataset?
         assert subset in ["train", "val"]
